@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datenschutzerklärung – Family Pieps</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Datenschutzerklärung für die App „Family Pieps“</h1>
+<p class="muted">Stand: 18. November 2026</p>
+
+<h2>1. Verantwortlicher</h2>
+<p>[VORNAME NACHNAME]<br>[STRASSE NR]<br>[PLZ ORT], Deutschland<br>E-Mail: <a href="mailto:[E-MAIL]">[E-MAIL]</a></p>
+<p>Einen Datenschutzbeauftragten gibt es nicht; er ist für diese App nicht vorgeschrieben.</p>
+
+<h2>2. Das Wichtigste in Kürze</h2>
+<ul>
+  <li>Keine Werbung, kein Tracking, keine Analyse- oder Absturz-Dienste, kein Verkauf von Daten.</li>
+  <li>Ohne Familie bleiben alle Daten nur auf dem Gerät.</li>
+  <li>In einer Familie werden die Familiendaten in Google Cloud Firestore in der EU gespeichert. Nur Mitglieder dieser Familie haben Zugriff.</li>
+  <li>Videoanrufe laufen direkt von Gerät zu Gerät und werden nicht aufgezeichnet.</li>
+  <li>Kamerabilder für das Aufwecken des Tablets werden nur auf dem Gerät ausgewertet, nie gespeichert oder gesendet.</li>
+  <li>Konto und Daten lassen sich jederzeit in der App löschen (⚙ → 🛡️ Datenschutz &amp; Konto).</li>
+</ul>
+
+<h2>3. Nutzung ohne Familie (nur dieses Gerät)</h2>
+<p>Kinder, Aufgaben, Punkte, Belohnungen, Kalender-Einträge und Einstellungen werden nur im App-Speicher des Geräts gespeichert. Es findet keine Übertragung an uns statt. Ausnahmen sind nur die unten beschriebenen Funktionen, die Sie selbst einschalten (Müllabfuhr, Home Assistant, Updates).</p>
+
+<h2>4. Anmeldung mit Google (Firebase Authentication)</h2>
+<p>Für die Familien-Funktion melden sich Eltern und Kinder mit ihrem Google-Konto an. Dabei verarbeitet Google (Firebase Authentication) Name, E-Mail-Adresse, Profilbild-Adresse und eine Nutzer-ID. Name und E-Mail-Adresse werden in der Familie gespeichert, damit Eltern sehen, wer Mitglied ist.</p>
+<p>Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, und Google LLC, USA. Eine Übermittlung in die USA ist möglich; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert, außerdem gelten die EU-Standardvertragsklauseln (Art. 45, 46 DSGVO).</p>
+
+<h2>5. Familiendaten (Google Cloud Firestore, Speicherort EU)</h2>
+<p>In einer Familie werden gespeichert: Namen der Kinder, Aufgaben, Abhak-Verlauf, Punkte, Belohnungen und Einlösungen, Statistik, Kalender-Termine, Müll-Einstellungen (Ort/Straße), Brotdosen-Wünsche, Einkaufsliste, Familien-Chat, Notizen, die Mitgliederliste (Name, E-Mail, Rolle) sowie technische Daten zum Verbindungsaufbau von Videoanrufen. Die Datenbank liegt in der Region „eur3“ (Belgien und Niederlande).</p>
+<p>Zugriff: Die Sicherheitsregeln der Datenbank lassen nur Mitglieder der jeweiligen Familie zu. Kinder sehen nur ihre eigenen Chats und Notizen; Direkt-Chats zwischen zwei Personen sind für andere Mitglieder gesperrt. Die Person, die die Familie erstellt hat, kann technisch alle Daten der Familie lesen, damit sie die Familie vollständig löschen kann; die App zeigt fremde Chats und Notizen nicht an.</p>
+<p>Neue Mitglieder kommen nur über einen QR-Code der Familie und erst nach Bestätigung durch einen Elternteil hinein.</p>
+<p>Die Eltern-PIN wird nur als gesalzener Hash (PBKDF2) gespeichert.</p>
+<p>Anbieter: Google Ireland Limited / Google LLC (siehe Ziffer 4) als Auftragsverarbeiter nach Art. 28 DSGVO.</p>
+
+<h2>6. Videoanrufe</h2>
+<p>Anrufe innerhalb der Familie werden per WebRTC direkt zwischen den Geräten aufgebaut und Ende-zu-Ende verschlüsselt (DTLS-SRTP). Bild und Ton laufen nicht über unsere Server und werden nicht aufgezeichnet. Für den Verbindungsaufbau werden Verbindungsdaten (darunter IP-Adressen der Geräte) kurzzeitig über die Familien-Datenbank ausgetauscht und die öffentlichen STUN-Server von Google angefragt, die dabei die IP-Adresse sehen. Die App braucht dafür Zugriff auf Kamera und Mikrofon, den Android nur nach Ihrer Erlaubnis gewährt.</p>
+
+<h2>7. Kamera am Familien-Tablet und QR-Codes</h2>
+<p>Wenn Sie es einschalten, prüft das Tablet über die Frontkamera, ob jemand davor steht, und weckt dann den Bildschirm. Die Gesichtserkennung (Google ML Kit) läuft vollständig auf dem Gerät. Es werden keine Bilder gespeichert oder gesendet, und es findet keine Identifizierung von Personen statt. QR-Codes werden mit dem Code-Scanner der Google-Play-Dienste auf dem Gerät gelesen.</p>
+
+<h2>8. Kalender-Import</h2>
+<p>Auf Wunsch liest die App Kalender, die auf dem Handy eingerichtet sind (z. B. Google Kalender), über die Android-Kalenderschnittstelle. Die ausgewählten Termine werden in die Familiendaten übernommen und sind für die Familie sichtbar. Dafür ist Ihre Erlaubnis „Kalender“ nötig.</p>
+
+<h2>9. Müllabfuhr-Termine</h2>
+<p>Wenn Sie die Müllabfuhr einrichten, sendet die App Ihren Ort und Ihre Straße an den Online-Dienst des zuständigen Entsorgers bzw. dessen Dienstleister (z. B. MyMüll, AbfallPlus/abfall.io, AWIDO, c-trace, AbfallNavi/regioIT, Müllmax, Insert IT), um die Abholtermine zu laden. Dabei wird auch Ihre IP-Adresse übertragen. Es gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>
+
+<h2>10. Home Assistant (optional)</h2>
+<p>Wenn Sie die App mit Ihrem eigenen Home Assistant verbinden, werden Adresse und Zugangsschlüssel nur auf diesem Gerät gespeichert. Sie sind von Android-Sicherungen ausgenommen und werden nie an unsere oder an andere Server gesendet. Die App spricht direkt mit Ihrem Home Assistant; außerhalb des Heimnetzes nur verschlüsselt (https).</p>
+
+<h2>11. Benachrichtigungen und Updates</h2>
+<p>Benachrichtigungen erzeugt die App selbst auf dem Gerät. Es wird kein Push-Dienst verwendet. Die Version aus Google Play wird über Google Play aktualisiert. Die direkt heruntergeladene Version fragt bei GitHub (GitHub Inc., USA) nach neuen Versionen und lädt sie von dort; GitHub sieht dabei die IP-Adresse.</p>
+
+<h2>12. Kinder</h2>
+<p>Die App richtet sich an Eltern, die sie gemeinsam mit ihren Kindern nutzen. Eltern legen die Familie an und entscheiden, welche Geräte und Kinder-Konten aufgenommen werden. Bei Kindern unter 16 Jahren erfolgt die Nutzung mit Einwilligung bzw. durch die Eltern (Art. 8 DSGVO).</p>
+
+<h2>13. Rechtsgrundlagen</h2>
+<ul>
+  <li>Bereitstellung der App-Funktionen, die Sie nutzen: Art. 6 Abs. 1 lit. b DSGVO.</li>
+  <li>Kamera, Mikrofon, Kalender, Benachrichtigungen: Ihre Einwilligung über die Android-Berechtigungen, Art. 6 Abs. 1 lit. a DSGVO. Sie können sie jederzeit in den Android-Einstellungen widerrufen.</li>
+  <li>Sicherheit und Missbrauchsschutz (z. B. Sicherheitsregeln, App-Prüfung durch Google Play Integrity): Art. 6 Abs. 1 lit. f DSGVO.</li>
+</ul>
+
+<h2>14. Speicherdauer und Löschung</h2>
+<p>Daten bleiben gespeichert, bis Sie sie löschen. In der App unter ⚙ → 🛡️ Datenschutz &amp; Konto → „Konto und Daten löschen“:</p>
+<ul>
+  <li>Wer die Familie erstellt hat, löscht damit die ganze Familie mit allen Daten (Kinder, Aufgaben, Punkte, Chats, Notizen, Anrufdaten) und das eigene Konto.</li>
+  <li>Andere Mitglieder löschen ihre Chat-Nachrichten und Notizen, verlassen die Familie und löschen ihr Konto. Einträge im gemeinsamen Verlauf der Familie (z. B. „Punkte vergeben von …“) bleiben für die Familie erhalten.</li>
+</ul>
+<p>Ohne App: siehe <a href="loeschen.html">Konto und Daten löschen</a>. Daten auf dem Gerät werden beim Deinstallieren der App gelöscht.</p>
+
+<h2>15. Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20; die App kann alle Daten als Datei sichern) und Widerspruch (Art. 21 DSGVO). Wenden Sie sich dafür an die oben genannte E-Mail-Adresse. Sie können sich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren, z. B. beim Unabhängigen Landeszentrum für Datenschutz Schleswig-Holstein (ULD), Holstenstraße 98, 24103 Kiel.</p>
+
+<h2>16. Sicherheit</h2>
+<p>Alle Verbindungen zu Google und zu den Entsorger-Diensten sind TLS-verschlüsselt. Der Zugriff auf Familiendaten wird serverseitig durch Sicherheitsregeln geprüft.</p>
+
+<h2>17. Änderungen</h2>
+<p>Wenn sich die App ändert, passen wir diese Erklärung an. Es gilt die jeweils hier veröffentlichte Fassung.</p>
+</main>
+</body>
+</html>
