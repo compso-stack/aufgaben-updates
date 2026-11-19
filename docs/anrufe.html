@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anrufe über Home Assistant – KiPa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>📹 Anrufe über Home Assistant</h1>
+<p>Ein Videoanruf in KiPa klingelt normalerweise nur, wenn KiPa auf dem anderen Handy gerade offen ist. Wer
+<a href="https://www.home-assistant.io/">Home Assistant</a> hat, kann das ändern: Ruft das Tablet an, schickt Home Assistant
+eine Nachricht an die Home-Assistant-App auf dem Eltern-Handy – mit den Knöpfen <b>„📹 Annehmen“</b> und <b>„Ablehnen“</b>.
+Das funktioniert auch, wenn KiPa geschlossen ist.</p>
+
+<h2>Was ihr braucht</h2>
+<ul>
+  <li>Home Assistant zuhause, im selben WLAN wie das Tablet.</li>
+  <li>Auf jedem Eltern-Handy die <b>Home-Assistant-App</b> (Companion-App, kostenlos im Play Store), angemeldet an eurem
+    Home Assistant. Sie meldet sich dort als Gerät an, z. B. „Pixel 8 von Anna“.</li>
+  <li>KiPa auf dem Tablet und auf den Eltern-Handys, mit eingeschaltetem 💬 Chat (⚙ → 🧩 Funktionen).</li>
+</ul>
+
+<h2>Einrichten</h2>
+<ol>
+  <li><b>Eltern-Handy:</b> In KiPa ⚙ → 🏠 Home Assistant. Adresse eintragen (z. B. <code>http://192.168.1.10:8123</code>), dann
+    „🔑 Mit Home Assistant anmelden“. Der Browser zeigt die Anmeldung eures Home Assistant – mit Benutzername und Passwort
+    anmelden, danach geht es von selbst zurück zu KiPa. (Wer lieber will, kann stattdessen einen langlebigen Zugangsschlüssel
+    eintragen: Home Assistant → Profil → Sicherheit → „Langlebige Zugangstoken“.)</li>
+  <li>Noch auf dem Eltern-Handy: „📲 QR fürs Tablet zeigen“.</li>
+  <li><b>Tablet:</b> ⚙ unten rechts → 🏠 Home Assistant → „📷 QR vom Eltern-Handy scannen“.</li>
+  <li>Darunter steht „📹 Anrufe über Home Assistant melden“ – der Schalter ist schon an. Bei jedem Elternteil zeigt KiPa
+    „✅ Automatisch erkannt“. Wird ein Handy nicht erkannt: KiPa einmal auf diesem Handy öffnen oder das Handy von Hand
+    antippen.</li>
+  <li>„Test-Nachricht schicken“ – auf dem Eltern-Handy erscheint eine Nachricht mit beiden Knöpfen.</li>
+</ol>
+
+<h2>Richtig klingeln lassen</h2>
+<p>Nach der ersten Nachricht gibt es in Android den Kanal „KiPa Anrufe“: Einstellungen → Apps → Home Assistant →
+Benachrichtigungen → „KiPa Anrufe“ → Ton. Dort einen Klingelton wählen und „Bitte nicht stören“ übergehen erlauben.</p>
+
+<h2>Gut zu wissen</h2>
+<ul>
+  <li>Die Nachricht verschwindet, sobald der Anruf vorbei ist, spätestens nach einer Minute. Nach 45 Sekunden ohne Antwort
+    gilt der Anruf als verpasst.</li>
+  <li>Der Zugangsschlüssel bleibt auf euren Geräten. Er wird nie auf einem Server gespeichert; das Tablet bekommt ihn nur
+    über den QR-Code.</li>
+  <li>Das Bild und der Ton gehen direkt von Gerät zu Gerät, nicht über Home Assistant. Unterwegs im Mobilfunknetz klappt die
+    Verbindung nicht immer.</li>
+  <li>Ausschalten: am Tablet den Schalter „📹 Anrufe über Home Assistant melden“ aus, oder bei einem Elternteil „keins“ wählen.</li>
+</ul>
+
+<p><a href="index.html">← Zurück</a></p>
+</main>
+</body>
+</html>
