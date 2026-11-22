@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Familie beitreten – KiPa</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .btn { display: block; text-align: center; background: #26a69a; color: #fff; text-decoration: none; font-weight: 700;
+         font-size: 1.2rem; padding: 16px; border-radius: 14px; margin: 16px 0; }
+  .code { font: 700 2.2rem/1.2 ui-monospace, monospace; letter-spacing: .12em; text-align: center; padding: 12px;
+          border: 2px dashed var(--muted); border-radius: 12px; margin: 8px 0 4px; }
+  ol li { margin: 8px 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>👨‍👩‍👧 Willkommen bei KiPa!</h1>
+<p id="role">Du wurdest eingeladen, einer Familie in KiPa beizutreten.</p>
+
+<h2>1. KiPa installieren</h2>
+<a class="btn" href="https://github.com/compso-stack/aufgaben-updates/releases/latest/download/aufgaben.apk">⬇️ KiPa herunterladen</a>
+<p class="muted">Nur für Android. Nach dem Herunterladen die Datei öffnen; Android fragt einmal, ob Apps aus dieser Quelle
+installiert werden dürfen – erlauben, dann „Installieren“. Ist KiPa schon installiert, geht es gleich mit Schritt 2 weiter.</p>
+
+<h2>2. Familie beitreten</h2>
+<ol>
+  <li>KiPa öffnen und auf <b>„📷 Familie beitreten“</b> tippen.</li>
+  <li>Mit Google anmelden.</li>
+  <li id="step3">Den Code vom Eltern-Handy eintippen – oder den QR-Code dort mit KiPa scannen.</li>
+  <li>Mama oder Papa bestätigen den Beitritt auf ihrem Handy – fertig!</li>
+</ol>
+<div id="codebox" hidden>
+  <p>Dein Code zum Eintippen:</p>
+  <div class="code" id="code"></div>
+  <p class="muted">30 Minuten gültig. Abgelaufen? Auf dem Eltern-Handy unter ⚙ → Familie &amp; Geräte gibt es einen neuen.</p>
+</div>
+
+<p class="muted" style="margin-top:32px"><a href="index.html">Über KiPa</a> · <a href="datenschutz.html">Datenschutz</a></p>
+</main>
+<script>
+  // everything after "#" stays in the browser (never sent to the server): role and the code to type
+  const p = new URLSearchParams(location.hash.slice(1));
+  const roles = { kid: "ein Kinder-Handy", dashboard: "das Tablet der Familie", parent: "das zweite Elternteil" };
+  if (roles[p.get("m")]) document.getElementById("role").textContent =
+    "Du wurdest eingeladen, einer Familie in KiPa beizutreten – als " + roles[p.get("m")] + ".";
+  const j = (p.get("j") || "").replace(/[^A-Z0-9]/g, "");
+  if (j.length === 6) {
+    document.getElementById("code").textContent = j.slice(0, 3) + " " + j.slice(3);
+    document.getElementById("codebox").hidden = false;
+    document.getElementById("step3").textContent = "Diesen Code eintippen (steht unten):";
+  }
+</script>
+</body>
+</html>
