@@ -24,6 +24,9 @@
 installiert werden dürfen – erlauben, dann „Installieren“. Ist KiPa schon installiert, geht es gleich mit Schritt 2 weiter.</p>
 
 <h2>2. Familie beitreten</h2>
+<a class="btn" id="open" href="#" hidden>✅ In KiPa beitreten</a>
+<p class="muted" id="openhint" hidden>KiPa ist installiert? Dann einfach antippen – KiPa öffnet sich und fragt beim
+Eltern-Handy an. Klappt das nicht, geht es auch so:</p>
 <ol>
   <li>KiPa öffnen und auf <b>„📷 Familie beitreten“</b> tippen.</li>
   <li>Mit Google anmelden.</li>
@@ -44,6 +47,19 @@ installiert werden dürfen – erlauben, dann „Installieren“. Ist KiPa schon
   const roles = { kid: "ein Kinder-Handy", dashboard: "das Tablet der Familie", parent: "das zweite Elternteil" };
   if (roles[p.get("m")]) document.getElementById("role").textContent =
     "Du wurdest eingeladen, einer Familie in KiPa beizutreten – als " + roles[p.get("m")] + ".";
+  // "Join in KiPa": opens the app with the invitation (kipa://join, see JoinLink in the app); without KiPa, Android's
+  // intent link falls back to the download
+  const f = p.get("f"), c = p.get("c");
+  if (f && c) {
+    const q = "f=" + encodeURIComponent(f) + "&c=" + encodeURIComponent(c) + "&m=" + encodeURIComponent(p.get("m") || "kid");
+    const apk = "https://github.com/compso-stack/aufgaben-updates/releases/latest/download/aufgaben.apk";
+    const open = document.getElementById("open");
+    open.href = /Android/i.test(navigator.userAgent)
+      ? "intent://join?" + q + "#Intent;scheme=kipa;package=de.pomp.chores;S.browser_fallback_url=" + encodeURIComponent(apk) + ";end"
+      : "kipa://join?" + q;
+    open.hidden = false;
+    document.getElementById("openhint").hidden = false;
+  }
   const j = (p.get("j") || "").replace(/[^A-Z0-9]/g, "");
   if (j.length === 6) {
     document.getElementById("code").textContent = j.slice(0, 3) + " " + j.slice(3);
