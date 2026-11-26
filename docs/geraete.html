@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geräte mit Home Assistant verbinden – KiPa</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .pick label { border: 1px solid #26A69A; border-radius: 18px; padding: 6px 12px; cursor: pointer; user-select: none; }
+  .pick input { margin-right: 6px; }
+  .btn { display: inline-block; background: #26A69A; color: #fff; border-radius: 8px; padding: 6px 12px; text-decoration: none; margin: 4px 0; }
+  .warn { background: #FFF3C4; color: #333; border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+  .no { background: #F2F2F2; color: #333; border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+  code { overflow-wrap: anywhere; }
+  section[data-d] { display: none; }
+  section.show { display: block; }
+</style>
+</head>
+<body>
+<main>
+<h1>📲 Geräte mit Home Assistant verbinden</h1>
+<p>Mit <a href="https://www.home-assistant.io/">Home Assistant</a> kann KiPa Technik-Zeit direkt freischalten: Ein Kind löst im
+Shop Punkte ein, und schon bekommt das Handy oder die Switch die Minuten. Hier stehen nur die Schritte für die Geräte, die ihr
+ausgewählt habt.</p>
+
+<div class="pick" id="pick">
+  <label><input type="checkbox" value="familylink">📱 Android-Handys (Google Family Link)</label>
+  <label><input type="checkbox" value="switch">🎮 Nintendo Switch</label>
+  <label><input type="checkbox" value="playstation">🎮 PlayStation</label>
+  <label><input type="checkbox" value="xbox">🎮 Xbox</label>
+</div>
+<p id="none" style="color:#777">Kreuzt oben an, welche Geräte eure Kinder haben.</p>
+
+<section id="base">
+<h2>1. Vorbereitung</h2>
+<ul>
+  <li>Home Assistant läuft bei euch zuhause, im selben WLAN wie das Tablet bzw. die Handys.</li>
+  <li>Home Assistant ist auf dem neuesten Stand (mindestens <b>2026.11</b>), dort ist der <b>Marketplace</b> schon eingebaut:
+    <br><a class="btn" href="https://my.home-assistant.io/redirect/updates/">Updates in Home Assistant öffnen</a></li>
+</ul>
+<p style="color:#777">Die türkisen Knöpfe sind „My Home Assistant“-Links: Beim ersten Mal fragt die Seite nach der Adresse eures
+Home Assistant (z. B. <code>http://192.168.1.10:8123</code>), danach springt jeder Knopf direkt an die richtige Stelle.</p>
+</section>
+
+<section data-d="familylink">
+<h2>📱 Android-Handys (Google Family Link)</h2>
+<p>Die Kinder-Handys müssen schon mit <b>Google Family Link</b> verwaltet werden (Elternkonto + Kinderkonto). Home Assistant
+braucht dafür zwei Teile: ein Add-on, das sich einmal bei Google anmeldet, und die Integration „Google Family Link“.</p>
+<div class="warn">⚠️ Google hat für Family Link keine offizielle Schnittstelle. Die Integration
+(<a href="https://github.com/noiwid/HAFamilyLink">noiwid/HAFamilyLink</a>) nutzt inoffizielle Wege: Google kann sie jederzeit
+stören, und laut ihrem Entwickler verstößt sie womöglich gegen Googles Nutzungsbedingungen. Nutzung auf eigene Gefahr – am besten mit
+einem eigenen Eltern-Google-Konto nur dafür.</div>
+<h3>a) Add-on „Google Family Link Auth“</h3>
+<ol>
+  <li>Add-on-Quelle hinzufügen:
+    <br><a class="btn" href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fnoiwid%2FHAFamilyLink">Quelle in Home Assistant hinzufügen</a>
+    <br>(oder von Hand: Einstellungen → Apps → App installieren → ⋮ → Repositories →
+    <code>https://github.com/noiwid/HAFamilyLink</code>)</li>
+  <li>„<b>Google Family Link Auth</b>“ installieren (dauert ein paar Minuten), „Beim Start starten“ einschalten und starten.</li>
+  <li>„<b>Web-UI öffnen</b>“ → „Start Authentication“. Wichtig: im WLAN zuhause über die lokale Adresse, nicht über eine Adresse
+    von unterwegs.</li>
+  <li>Die Seite <code>http://&lt;Adresse-von-Home-Assistant&gt;:6080/vnc.html</code> öffnen. Das Passwort dafür steht im
+    Reiter <b>Protokoll</b> des Add-ons („VNC password for this start“).</li>
+  <li>Im Fenster ganz normal bei Google anmelden (mit dem Elternkonto) und die Bestätigung (2FA) erledigen – das Handy dafür
+    bereithalten, es gibt etwa 5 Minuten Zeit. Wenn „gespeichert“ erscheint, ist dieser Teil fertig.</li>
+  <li>Danach das Add-on wieder stoppen. Die Anschlüsse 8099 und 6080 nie ins Internet freigeben.</li>
+</ol>
+<h3>b) Integration „Google Family Link“</h3>
+<ol>
+  <li>Einstellungen → <b>Marketplace</b> → Durchsuchen → „<b>Google Family Link</b>“ → installieren → Home Assistant neu starten.</li>
+  <li>Integration hinzufügen:
+    <br><a class="btn" href="https://my.home-assistant.io/redirect/config_flow_start/?domain=familylink">Family Link in Home Assistant einrichten</a>
+    <br>→ „<b>Auto-detect (add-on or local file)</b>“ wählen, der Rest kann so bleiben.</li>
+  <li>Kurz warten: Für jedes Kinder-Handy erscheint ein Gerät.</li>
+</ol>
+<p>Läuft die Google-Anmeldung irgendwann ab, meldet Home Assistant das. Dann Schritt a) 3–5 wiederholen.</p>
+</section>
+
+<section data-d="switch">
+<h2>🎮 Nintendo Switch</h2>
+<p>Die Switch-Integration ist in Home Assistant schon eingebaut – kein Marketplace nötig.</p>
+<ol>
+  <li>Die Switch muss mit der App <b>„Nintendo Switch Parental Controls“</b> auf einem Eltern-Handy verbunden sein
+    (<a href="https://www.nintendo.com/en-gb/Support/Parental-Controls/How-to-Set-Up-Adjust-or-Remove-Parental-Controls-on-Nintendo-Switch-1494771.html">Anleitung von Nintendo</a>).</li>
+  <li>Integration hinzufügen:
+    <br><a class="btn" href="https://my.home-assistant.io/redirect/config_flow_start/?domain=nintendo_parental_controls">Switch in Home Assistant einrichten</a></li>
+  <li>Home Assistant zeigt einen Link: öffnen und mit dem Nintendo-Account anmelden, mit dem die Switch verwaltet wird.</li>
+  <li>Auf der Seite mit dem roten Knopf „<b>Diese Person auswählen</b>“ den Knopf <b>lange drücken</b> (am PC: Rechtsklick)
+    → „Link kopieren“ – nicht antippen.</li>
+  <li>Den kopierten Link in Home Assistant einfügen, „Senden“ und die restlichen Fragen bestätigen.</li>
+</ol>
+<p>Ändert ihr später in Home Assistant die PIN der Switch, schickt Nintendo automatisch eine E-Mail – das ist normal.</p>
+</section>
+
+<section data-d="playstation">
+<h2>🎮 PlayStation</h2>
+<div class="no">Geht leider (noch) nicht. Home Assistant kann bei der PlayStation nur anzeigen, ob sie an ist und was gespielt
+wird – Spielzeit freischalten oder begrenzen kann es nicht. Spielzeit bitte weiter in der PlayStation-App einstellen.</div>
+</section>
+
+<section data-d="xbox">
+<h2>🎮 Xbox</h2>
+<div class="no">Geht leider (noch) nicht. Die Xbox-Integration von Home Assistant zeigt nur den Status, Bildschirmzeit lässt sich
+damit nicht freischalten. Spielzeit bitte weiter in der App „Xbox Family Settings“ einstellen.</div>
+</section>
+
+<section id="connect">
+<h2>Zum Schluss: KiPa mit Home Assistant verbinden</h2>
+<ol>
+  <li><b>Eltern-Handy:</b> KiPa → ⚙ → 🏠 Home Assistant → Adresse eintragen (z. B. <code>http://192.168.1.10:8123</code>) →
+    „🔑 Mit Home Assistant anmelden“.</li>
+  <li>KiPa zeigt danach „✅ … Geräte gefunden“ – Handys mit 📱, Switch mit 🎮.</li>
+  <li><b>Tablet</b> (falls ihr eins habt): Eltern-Handy „📲 QR fürs Tablet zeigen“, am Tablet ⚙ → 🏠 Home Assistant →
+    „📷 QR vom Eltern-Handy scannen“.</li>
+  <li>Belohnungen: Eltern → 🎁 Belohnungen → „⏱ Technik-Zeit-Vorlagen“, oder das Kind wählt im Shop „⏱ Eigene Technik-Zeit“.</li>
+</ol>
+<p>Wird ein Gerät nicht gefunden: in KiPa unter ⚙ → 🏠 Home Assistant „Trennen“ und neu anmelden, nachdem Home Assistant die Geräte
+angelegt hat.</p>
+</section>
+
+<p><a href="index.html">← KiPa</a></p>
+</main>
+<script>
+  // ?d=familylink,switch (from KiPa) ticks those devices; the page shows only their sections
+  const boxes = [...document.querySelectorAll('#pick input')];
+  const want = (new URLSearchParams(location.search).get('d') || '').split(',');
+  boxes.forEach(b => { b.checked = want.includes(b.value); b.addEventListener('change', show); });
+  function show() {
+    const on = boxes.filter(b => b.checked).map(b => b.value);
+    document.querySelectorAll('section[data-d]').forEach(s => s.classList.toggle('show', on.includes(s.dataset.d)));
+    document.getElementById('none').style.display = on.length ? 'none' : 'block';
+  }
+  show();
+</script>
+</body>
+</html>
